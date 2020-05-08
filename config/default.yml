@@ -5,10 +5,45 @@
 #   Enabled: pending
 #   VersionAdded: '0.80'
 
-Bugcrowd/VisitInBeforeHook:
-  Description: "Avoid using 'visit' in before hooks, as it creates strict order dependencies that are hard to untangle"
+Bugcrowd/CurrentJumpingControllerBoundary:
+  Description: 'Catches Current jumping controller boundaries'
+  Enabled: true
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'app/controllers/**/*.rb'
+
+Bugcrowd/AddIndexNonConcurrently:
+  Description: 'Always add indexes concurrently'
+  Include:
+    - 'db/migrate/*.rb'
+  Enabled: true
+
+Bugcrowd/DangerousEnvMutation:
+  Description: 'Prevent direct modification of ENV to prevent global state pollution'
   Include:
     - 'spec/**/*.rb'
   Exclude:
     - 'spec/spec_helper.rb'
+  Enabled: true
+
+Bugcrowd/RailsConfigurationMutation:
+  Description: 'Prevent direct modification of Rails config to prevent global state pollution'
+  Include:
+    - 'spec/**/*.rb'
+  Exclude:
+    - 'spec/spec_helper.rb'
+  Enabled: true
+
+Bugcrowd/VisitInBeforeHook:
+  Description: "Avoid using 'visit' in before hooks, as it creates strict order dependencies that are hard to untangle
+  Include:
+    - 'spec/**/*.rb'
+  Exclude:
+    - 'spec/spec_helper.rb'
+  Enabled: true
+
+Bugcrowd/RequireOptionalForBelongsTo:
+  Description: 'blah'
+  Include:
+    - 'app/models/**/*.rb'
   Enabled: true
